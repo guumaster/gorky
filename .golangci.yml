@@ -1,0 +1,13 @@
+linters:
+  enable-all: true
+  disable:
+    - gomnd
+
+run:
+  skip-files:
+    - ".*\\.gen\\.go$"
+
+# all available settings of specific linters
+linters-settings:
+  unparam:
+    check-exported: true
