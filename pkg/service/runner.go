@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os/user"
+	"strings"
 	"time"
 
 	"github.com/OpenPeeDeeP/xdg"
@@ -72,8 +73,8 @@ func (r *Runner) RepeatAfter(d time.Duration) {
 
 func (r *Runner) newService(config *Config) error {
 	s, err := service.New(r.manager, &service.Config{
-		Name:             config.Binary,
-		DisplayName:      config.DisplayName,
+		Name:             strings.Title(config.Binary),
+		DisplayName:      strings.Title(config.DisplayName),
 		Description:      config.Description,
 		UserName:         config.User.Username,
 		WorkingDirectory: config.User.HomeDir,

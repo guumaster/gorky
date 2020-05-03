@@ -40,10 +40,10 @@ systemctl start gorky
 * [ ] migrate to `cobra`
 * [ ] export `service/runner` to separate package
 * [ ] make the CLI usable
-* [ ] allow to change unsplash collection by config
+* [ ] allow to change unsplash collection from config file
 * [ ] check for config before service installation
 
-* [ ] integrate more services (Pinterest, wa)
+* [ ] integrate more services (Pinterest)
 * [ ] add service parameters. ex: 
     - runAt("12pm")
     - or more "cron like"

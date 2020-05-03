@@ -16,7 +16,7 @@ import (
 	"github.com/guumaster/gorky/fonts"
 )
 
-func setNewBackground(img *BackgroundImage, dataDir string) (string, error) {
+func saveToFile(img *BackgroundImage, dataDir string) (string, error) {
 	dc := gg.NewContext(img.W, img.H)
 	dc.DrawImage(img, 0, 0)
 
@@ -25,10 +25,12 @@ func setNewBackground(img *BackgroundImage, dataDir string) (string, error) {
 		return "", err
 	}
 
+	// 	newBack, err := os.Create(path.Join(dataDir, "gorky_background.png"))
 	newBack, err := ioutil.TempFile(dataDir, "gorky_*.png")
 	if err != nil {
 		return "", err
 	}
+	defer newBack.Close()
 
 	log.Printf("Saving background to %s\n", newBack.Name())
 
@@ -37,12 +39,13 @@ func setNewBackground(img *BackgroundImage, dataDir string) (string, error) {
 		return "", err
 	}
 
-	err = wallpaper.SetFromFile(newBack.Name())
-	if err != nil {
-		return "", err
-	}
-
 	return newBack.Name(), nil
+}
+
+func setNewBackground(file string) error {
+	log.Printf("Setting background %s\n", file)
+
+	return wallpaper.SetFromFile(file)
 }
 
 func addWatermark(dc *gg.Context, s Size) error {

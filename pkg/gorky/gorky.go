@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"image"
 	"log"
+	"time"
 
 	"github.com/OpenPeeDeeP/xdg"
 )
@@ -40,9 +41,15 @@ func Run(dirs *xdg.XDG) error {
 		return err
 	}
 
+	log.Println("Saving background")
+
+	newBack, err := saveToFile(img, dataDir)
+	if err != nil {
+		return err
+	}
 	log.Println("Changing background")
 
-	newBack, err := setNewBackground(img, dataDir)
+	err = setNewBackground(newBack)
 	if err != nil {
 		return err
 	}
@@ -55,4 +62,19 @@ func Run(dirs *xdg.XDG) error {
 	}
 
 	return nil
+}
+
+func RepeatAfter(d time.Duration, dirs *xdg.XDG) {
+	ticker := time.NewTicker(d)
+
+	err := Run(dirs)
+	if err != nil {
+		return
+	}
+	for range ticker.C {
+		err := Run(dirs)
+		if err != nil {
+			return
+		}
+	}
 }

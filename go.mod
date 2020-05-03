@@ -11,6 +11,7 @@ require (
 	github.com/kardianos/service v1.0.0
 	github.com/reujab/wallpaper v0.0.0-20200229074030-4e1aa3ff8284
 	github.com/smartystreets/goconvey v1.6.4 // indirect
+	github.com/stretchr/testify v1.5.1 // indirect
 	gopkg.in/ini.v1 v1.55.0 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 )
