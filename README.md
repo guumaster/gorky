@@ -1,4 +1,4 @@
-# Gorky 
+# Gorky Wallpapers Made Simple
 
 An app to change your desktop wallpaper from different sources.
  
